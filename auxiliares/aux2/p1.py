@@ -42,7 +42,7 @@ in vec3 position;
 out vec3 fragColor;
 
 void main() {
-    fragColor = vec3(0.3, 0.6, 0.5);
+    fragColor = vec3(0.2, 0.6, 1.0);
     gl_Position = vec4(position, 1.0f);
 }
     """
@@ -80,7 +80,7 @@ void main()
 
         # Esta linea limpia la pantalla entre frames
         window.clear()
-        glClearColor(1.0, 1.0, 1.0, 0.0)
+        glClearColor(0.1, 0.1, 0.1, 0.0)
 
         pipeline.use()
         circle_gpu.draw(GL_TRIANGLES)
