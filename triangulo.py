@@ -63,20 +63,26 @@ if __name__ == "__main__":
     positions = np.array([
         -0.5, -0.5,
         0.5, -0.5,
-        0.0,  0.5
+        0.5,  0.5,
+        0.5, 0.5,
+        -0.5, -0.5,
+        -0.5, 0.5
     ], dtype=np.float32)
 
     colors = np.array([
         1, 0, 0,
         0, 1, 0,
-        0, 0, 1
+        0, 0, 1,
+        0, 0, 1,
+        0, 1, 0,
+        1, 0, 0,
     ], dtype=np.float32)
 
     intensities = np.array([
-        1, 0.5, 0
+        1,0.8,0.6,0.5,0.4,0.3
     ], dtype=np.float32)
 
-    gpu_triangle = pipeline.vertex_list(3, GL.GL_TRIANGLES)
+    gpu_triangle = pipeline.vertex_list(6, GL.GL_TRIANGLES)
     gpu_triangle.position = positions
     gpu_triangle.color = colors
     gpu_triangle.intensity = intensities
@@ -85,9 +91,12 @@ if __name__ == "__main__":
         global TIME
         TIME += dt*5
         color_change = np.array([
+            0, 0, 0,
+            0, 0, 0,
             np.sin(TIME), 0, np.cos(TIME),
             0, np.sin(TIME), 0,
-            np.cos(TIME), 0, np.sin(TIME)
+            0, 0, 0,
+            0, 0, 0,
         ], dtype=np.float32) + 0.5
         gpu_triangle.color = color_change
 
