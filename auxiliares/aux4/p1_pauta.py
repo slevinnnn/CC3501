@@ -96,6 +96,32 @@ void main()
     #Grafo de escena incompleto
     graph = SceneGraph(camera=cam)
     graph.add_node("body", rotation=[0, np.pi + np.pi/4, 0], scale=[0.2, 0.2, 0.2], position=[0, 0, 0]) # nodo sin geometría pero con transformaciones
+    graph.add_node("chest", attach_to="body",
+                            mesh=chest,
+                            color=shapes.RED,     
+                            pipeline=pipeline,
+                            position=[0.0, 0.0, 0],
+                            scale=[0.5, 1, 0.35])
+    graph.add_node("head", attach_to="body",
+                            mesh=head,
+                            color=shapes.CYAN,     
+                            pipeline=pipeline,
+                            position=[0.0, 0.75, 0],
+                            scale=[0.35, 0.35, 0.35])
+    graph.add_node("left_arm", attach_to="body",
+                            mesh=arm,
+                            color=shapes.GREEN,     
+                            pipeline=pipeline,
+                            position=[0.5, 0.0, 0],
+                            rotation=[0, 0, 0.45],
+                            scale=[0.2, 1, 0.2])
+    graph.add_node("right_arm", attach_to="body",
+                            mesh=arm,
+                            color=shapes.GREEN,     
+                            pipeline=pipeline,
+                            position=[-0.5, 0.0, 0],
+                            rotation=[0, 0.0, -0.45],
+                            scale=[0.2, 1, 0.2])
     graph.add_node("left_leg", attach_to="body")    # nodo sin geometría
     graph.add_node("right_leg", attach_to="body")   # nodo sin geometría
     graph.add_node("left_upper_leg",
@@ -152,17 +178,17 @@ void main()
         graph.draw()
 
         # Los siguientes objetos no estan en el grafo, por lo que hay que pasar sus uniforms manualmente e invocar draw()
-        pipeline["u_model"] = head_model
-        pipeline["u_color"] = shapes.CYAN
-        head.draw(GL_TRIANGLES)
+        #pipeline["u_model"] = head_model
+        #pipeline["u_color"] = shapes.CYAN
+        #head.draw(GL_TRIANGLES)
 
-        pipeline["u_model"] = chest_model
-        pipeline["u_color"] = shapes.RED
-        chest.draw(GL_TRIANGLES)
+        #pipeline["u_model"] = chest_model
+        #pipeline["u_color"] = shapes.RED
+        #chest.draw(GL_TRIANGLES)
 
-        pipeline["u_model"] = arm_model
-        pipeline["u_color"] = shapes.GREEN
-        arm.draw(GL_TRIANGLES)
+        #pipeline["u_model"] = arm_model
+        #pipeline["u_color"] = shapes.GREEN
+        #arm.draw(GL_TRIANGLES)
 
 
 
